@@ -11,6 +11,13 @@ namespace Basic3DStarter
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        // The triangle to draw
+        Triangle triangle;
+        // The quad to draw
+        Quad quad;
+        // The cube to draw 
+        Cube cube;
+
 
         public Game1()
         {
@@ -40,7 +47,12 @@ namespace Basic3DStarter
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            // Create the triangle
+            triangle = new Triangle(this);
+            // Create the quad
+            quad = new Quad(this);
+            // Create the cube
+            cube = new Cube(this);
         }
 
         /// <summary>
@@ -62,7 +74,10 @@ namespace Basic3DStarter
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            // Update the triangle 
+            triangle.Update(gameTime);
+            // update the cube 
+            cube.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -75,7 +90,12 @@ namespace Basic3DStarter
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            // Draw the triangle 
+            triangle.Draw();
+            // Draw the quad
+            quad.Draw();
+            // draw the cube
+            cube.Draw();
 
             base.Draw(gameTime);
         }
